@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102747">
+  <title>Login | PUREHAI</title>
+  <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+  <main class="login-card">
+    <div class="brand-mark" aria-hidden="true"></div>
+    <p class="eyebrow">WATER SUPPLIER MANAGEMENT</p>
+    <h1 id="formTitle">PUREHAI mein login karein</h1>
+    <p class="intro" id="introMessage">Login jankari load ho rahi hai…</p>
+    <form id="loginForm" hidden>
+      <label for="loginUsername">ID / Username</label>
+      <input id="loginUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="32" required>
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" name="password" type="password" autocomplete="current-password" maxlength="128" required>
+      <label class="remember-option" for="rememberMe">
+        <input id="rememberMe" name="rememberMe" type="checkbox" checked>
+        <span>Is device par login yaad rakhein (30 din)</span>
+      </label>
+      <button id="loginButton" type="submit">Login</button>
+      <button class="text-button" id="forgotButton" type="button">ID/password bhool gaye?</button>
+    </form>
+    <form id="setupForm" hidden>
+      <label for="setupUsername">Naya ID / Username</label>
+      <input id="setupUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]{3,32}" required>
+      <small class="phone-hint">3-32 characters: letters, numbers, dot, underscore ya hyphen.</small>
+      <label for="setupPassword">Naya password</label>
+      <input id="setupPassword" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+      <label for="confirmPassword">Password dobara likhein</label>
+      <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+      <label class="remember-option" for="rememberSetup">
+        <input id="rememberSetup" name="rememberMe" type="checkbox" checked>
+        <span>Is device par login yaad rakhein (30 din)</span>
+      </label>
+      <button id="setupButton" type="submit">ID/password save karein</button>
+    </form>
+    <form id="resetForm" hidden>
+      <label for="resetKey">Admin reset key</label>
+      <input id="resetKey" name="resetKey" type="password" autocomplete="off" required>
+      <label for="resetUsername">Naya ID / Username</label>
+      <input id="resetUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]{3,32}" required>
+      <label for="resetPassword">Naya password</label>
+      <input id="resetPassword" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+      <label for="resetConfirmPassword">Password dobara likhein</label>
+      <input id="resetConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+      <button id="resetSubmitButton" type="submit">Naya ID/password save karein</button>
+      <button class="text-button" id="backToLoginButton" type="button">Login par wapas jaayein</button>
+    </form>
+    <p class="message" id="loginMessage" role="alert" aria-live="polite"></p>
+    <p class="security-note">Password browser storage mein save nahi hota; browser password manager se save kar sakte hain. “Login yaad rakhein” chunne par session 30 din chalega. Aap kabhi bhi logout kar sakte hain.</p>
+  </main>
+  <script src="/login.js"></script>
+</body>
+</html>

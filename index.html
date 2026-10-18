@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUREHAI | Water Supplier Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="drop"></div><div><strong>PUREHAI</strong><small>Water Supplier Management</small></div></div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span>⌂</span><b class="nav-label">Dashboard</b></button>
+    <button data-page="customers"><span></span><b class="nav-label">Customers</b></button>
+    <button data-page="deliveries"><span></span><b class="nav-label">Deliveries</b></button>
+    <button data-page="payments"><span></span><b class="nav-label">Payments</b></button>
+    <button data-page="billing"><span></span><b class="nav-label">Billing & Reports</b></button>
+    <button data-page="settings"><span></span><b class="nav-label">Settings</b></button>
+  </nav>
+  <div class="side-foot"> PUREHAI<br>Pure Water. Clear Records.</div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <button class="hamb" id="toggleSidebar" title="Toggle sidebar">☰</button>
+  <div class="search"><input id="globalSearch" placeholder="Search customers, mobile number..." autocomplete="off"></div>
+  <div class="top-right"><span class="date" id="todayDate"></span><span class="notif">♧</span><div class="owner"><div class="avatar">A</div><div><b>Owner</b><br><small>Administrator</small></div></div><button class="btn secondary small" id="logoutButton" type="button">Logout</button></div>
+</header>
+<div class="content">
+<section class="page-section active" id="page-dashboard">
+  <div class="page-head"><div><h1>Dashboard</h1><p>Welcome back! Here's your business summary.</p></div><button class="btn" data-modal="customer">＋ Add Customer</button></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-icon ic-blue"></div><div><label>Total Customers</label><strong id="statCustomers">24</strong><small>● Registered customers</small></div></div>
+    <div class="stat"><div class="stat-icon ic-green"></div><div><label>Today's Deliveries</label><strong id="statDeliveries">18</strong><small>● Bottle delivery entries</small></div></div>
+    <div class="stat"><div class="stat-icon ic-purple"></div><div><label>Total Sales (This Month)</label><strong id="statSales">₹ 12,480</strong><small>● Delivery charges</small></div></div>
+    <div class="stat"><div class="stat-icon ic-orange"></div><div><label>Pending Amount</label><strong id="statPending">₹ 3,250</strong><small>● Outstanding balance</small></div></div>
+  </div>
+  <div class="grid-two">
+    <div class="card"><div class="card-head"><h2> Sales Overview</h2><select id="chartPeriod"><option>This Month</option><option>Last 7 Days</option></select></div><div class="chart" id="salesChart"></div><div class="legend"><span><i class="dot" style="background:#1677f9"></i>Sales</span><span>Illustrative demo chart</span></div></div>
+    <div class="card"><div class="card-head"><h2> Payment Status</h2><span style="font-size:11px;color:#8191a8">Customer accounts</span></div><div class="status-row"><div class="donut"><div class="donut-inner">Total<br>Customers<strong id="donutTotal">24</strong></div></div><div class="legend-list"><div><i class="dot" style="background:#0ca982"></i>Paid <b id="paidCount">16</b></div><div><i class="dot" style="background:#f59e0b"></i>Partially paid <b id="partialCount">5</b></div><div><i class="dot" style="background:#ef4444"></i>Pending <b id="unpaidCount">3</b></div></div></div></div>
+  </div>
+  <div class="lower-grid">
+    <div class="card"><div class="card-head"><h2>Recent Customers</h2><button class="btn small" data-page="customers">View All →</button></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Name</th><th>Mobile</th><th>Total Bill</th><th>Paid</th><th>Pending</th><th>Status</th></tr></thead><tbody id="recentCustomers"></tbody></table></div></div>
+    <div style="display:grid;gap:18px;align-content:start"><div class="card"><div class="card-head"><h2>Recent Activity</h2><span style="font-size:11px;color:#1677f9">Latest entries</span></div><div class="activity-list" id="activityList"></div></div><div class="card"><div class="card-head"><h2>Quick Actions</h2></div><div class="quick-grid"><button class="quick" data-modal="customer"><span>♙+</span>Add Customer</button><button class="quick" data-modal="delivery"><span>🚚</span>Add Delivery</button><button class="quick" data-modal="payment"><span>₹</span>Record Payment</button><button class="quick" data-page="billing"><span>▧</span>View Bills</button></div></div></div>
+  </div>
+</section>
+<section class="page-section" id="page-customers">
+  <div class="page-head"><div><h1>Customers</h1><p>Manage customer details, balances and complete history.</p></div><button class="btn" data-modal="customer">＋ Add Customer</button></div>
+  <div class="card"><div class="filter-row"><input id="customerSearch" placeholder="Search name or mobile..."><select id="customerStatus"><option value="all">All statuses</option><option value="Active">Active</option><option value="Inactive">Inactive</option></select><button class="btn secondary" id="exportCustomers">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Mobile</th><th>Address</th><th>Since</th><th>Total Bill</th><th>Paid</th><th>Pending</th><th>Status</th><th>Action</th></tr></thead><tbody id="customersTable"></tbody></table></div></div>
+</section>
+<section class="page-section" id="page-deliveries">
+  <div class="page-head"><div><h1>Deliveries</h1><p>Record bottle deliveries and automatically calculate charges.</p></div><button class="btn" data-modal="delivery">＋ Add Delivery</button></div>
+  <div class="card"><div class="filter-row"><input type="date" id="deliveryDateFilter"><input id="deliverySearch" placeholder="Search customer..."><button class="btn secondary" id="exportDeliveries">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Quantity</th><th>Rate</th><th>Total</th><th>Notes</th></tr></thead><tbody id="deliveriesTable"></tbody></table></div></div>
+</section>
+<section class="page-section" id="page-payments">
+  <div class="page-head"><div><h1>Payments</h1><p>Record cash or UPI payments and track customer dues.</p></div><button class="btn" data-modal="payment">＋ Record Payment</button></div>
+  <div class="stats"><div class="stat"><div class="stat-icon ic-green">₹</div><div><label>Total Received</label><strong id="paymentsReceived">₹ 0</strong><small>All recorded payments</small></div></div><div class="stat"><div class="stat-icon ic-orange">◷</div><div><label>Pending Dues</label><strong id="paymentsPending">₹ 0</strong><small>Across customers</small></div></div></div>
+  <div class="card"><div class="filter-row"><input id="paymentSearch" placeholder="Search customer..."><select id="paymentMethodFilter"><option value="all">All methods</option><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Other</option></select><button class="btn secondary" id="exportPayments">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Method</th><th>Reference / Notes</th><th>Amount</th></tr></thead><tbody id="paymentsTable"></tbody></table></div></div>
+</section>
+<section class="page-section" id="page-billing">
+  <div class="page-head"><div><h1>Billing & Reports</h1><p>Review customer balances and monthly billing summaries.</p></div><button class="btn" data-modal="payment">＋ Record Payment</button></div>
+  <div class="note">Bills shown here are calculated from recorded delivery charges and payments. This frontend demo stores data in this browser only.</div>
+  <div class="card"><div class="card-head"><h2>Customer Account Summary</h2><button class="btn secondary small" id="exportBills">Export Report CSV</button></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Deliveries</th><th>Total Bill</th><th>Paid</th><th>Balance Due</th><th>Account</th></tr></thead><tbody id="billingTable"></tbody></table></div></div>
+</section>
+<section class="page-section" id="page-settings">
+  <div class="page-head"><div><h1>Settings</h1><p>Customize your business information and default bottle pricing.</p></div></div>
+  <div class="card" style="max-width:700px"><h2 style="margin-top:0">Business Profile</h2><form id="settingsForm" class="form-grid"><div class="field"><label>Business name</label><input id="businessName" value="PUREHAI"></div><div class="field"><label>Owner name</label><input id="ownerName" value="Owner"></div><div class="field"><label>Mobile number</label><input id="businessPhone" placeholder="Enter business phone"></div><div class="field"><label>Default bottle price (₹)</label><input id="defaultRate" type="number" min="0" step=".01" value="20"></div><div class="field full"><label>Business address</label><textarea id="businessAddress" rows="2" placeholder="Enter business address"></textarea></div><div class="field full"><button class="btn" type="submit">Save Settings</button></div></form><hr style="border:0;border-top:1px solid var(--line);margin:24px 0"><h2>Demo Data</h2><p style="font-size:13px;color:var(--muted);line-height:1.6">This is a frontend-only prototype. Changes are saved in this browser using local storage, not to an online database. Use Export CSV to keep a copy of records.</p><button class="btn secondary" id="resetDemo">Reset Demo Data</button></div>
+</section>
+<section class="page-section" id="page-customer-detail">
+  <div class="page-head"><div><button class="btn secondary small" id="backCustomers">← Back to Customers</button><h1 id="detailName" style="margin-top:14px">Customer</h1><p id="detailMeta"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn secondary" id="detailAddDelivery">＋ Delivery</button><button class="btn" id="detailAddPayment">＋ Payment</button><button class="btn danger" id="detailDeleteCustomer">Delete Customer</button></div></div>
+  <div class="card"><div id="detailStats" class="detail-grid"></div><div class="tabs"><button class="active" data-tab="all">All History</button><button data-tab="deliveries">Deliveries</button><button data-tab="payments">Payments</button><button data-tab="bills">Monthly Summary</button></div><div class="table-wrap"><table><thead id="historyHead"></thead><tbody id="historyTable"></tbody></table></div></div>
+</section>
+</div>
+<footer class="footer">PUREHAI &nbsp; | &nbsp; Water Supplier Management System <span style="float:right">Frontend prototype v1.0</span></footer>
+</main>
+</div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><h2 id="modalTitle">Add Customer</h2><p class="sub" id="modalSub">Enter the details below.</p><form id="modalForm"><div id="modalFields" class="form-grid"></div><div class="modal-actions"><button type="button" class="btn secondary" id="cancelModal">Cancel</button><button class="btn" type="submit" id="submitModal">Save Record</button></div></form></div></div>
+<button class="assistant-toggle" id="assistantToggle" aria-label="Open PUREHAI assistant">✦ <span>Assistant</span></button>
+<section class="assistant-panel" id="assistantPanel" aria-label="PUREHAI customer assistant" aria-hidden="true">
+  <header class="assistant-head"><div><strong>✦ PUREHAI Voice Assistant</strong><small id="assistantStatus">Customer lookup · Hindi/English voice</small></div><button id="assistantClose" aria-label="Close assistant">×</button></header>
+  <div class="assistant-messages" id="assistantMessages" aria-live="polite"></div>
+  <form class="assistant-form" id="assistantForm"><button type="button" class="voice-button" id="voiceInput" aria-label="Ask by voice" title="Ask by voice">🎙</button><input id="assistantInput" autocomplete="off" placeholder="Bolkar poochhein ya type karein…" aria-label="Ask the assistant"><button type="submit" aria-label="Send message">➤</button></form>
+  <div class="assistant-voice-tools"><button type="button" id="voiceOutputToggle" aria-pressed="true">🔊 Replies bolkar sunayein: On</button><span>Mic ke liye permission dein</span></div>
+  <p class="assistant-note">Voice feature browser par nirbhar hai; microphone permission zaroori hai aur voice processing browser provider par depend kar sakti hai. WhatsApp/SMS nahi bhejta.</p>
+</section>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<style>.modal-backdrop{z-index:35}.voice-button{width:42px;flex:0 0 42px;border-radius:10px;background:#eef4ff;color:#20589a;font-size:18px}.voice-button.listening{background:#fee2e2;color:#c63737;animation:voicePulse 1s infinite}.assistant-voice-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 8px;color:#8191a8;font-size:10px}.assistant-voice-tools button{background:none;color:#176de2;padding:4px;font-weight:700;font-size:11px}.assistant-voice-tools button[aria-pressed="false"]{color:#8191a8}@keyframes voicePulse{50%{box-shadow:0 0 0 5px #fee2e277}}</style>
+</body>
+</html>

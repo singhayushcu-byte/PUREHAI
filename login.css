@@ -1,0 +1,25 @@
+:root{font-family:Inter,"Segoe UI",Arial,sans-serif;color:#152c4f;background:#f4f8fd;font-synthesis:none;text-rendering:optimizeLegibility}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{min-height:100vh;margin:0;display:grid;place-items:center;padding:22px;background:radial-gradient(ellipse at 50% 0,#e3efff,transparent 55%),#f4f8fd}
+.login-card{width:min(100%,440px);padding:38px;background:#fff;border:1px solid #e5edf7;border-radius:20px;box-shadow:0 18px 60px #163b6714}
+.brand-mark{width:54px;height:54px;display:grid;place-items:center;border-radius:17px;background:#1677f9;color:white;font-size:28px}
+.eyebrow{margin:25px 0 9px;color:#1677f9;font-size:10px;font-weight:800;letter-spacing:1.5px}
+h1{margin:0;font-size:25px;letter-spacing:-.5px}
+.intro{margin:10px 0 27px;color:#71839d;font-size:14px;line-height:1.6}
+label{display:block;margin:0 0 8px;font-size:13px;font-weight:700}
+input{width:100%;height:48px;padding:0 13px;border:1px solid #dce6f2;border-radius:10px;outline:none;font:inherit}
+input:focus{border-color:#1677f9;box-shadow:0 0 0 3px #1677f91a}
+.remember-option{display:flex;align-items:center;gap:9px;margin:14px 0 2px;color:#526680;font-size:13px;font-weight:600;cursor:pointer}
+.remember-option input{width:16px;height:16px;margin:0;accent-color:#1677f9}
+.phone-hint{display:block;margin:7px 0 0;color:#8191a8;font-size:11px}
+form>button[type=submit]{width:100%;height:48px;margin-top:14px;border:0;border-radius:10px;background:#1677f9;color:white;font:inherit;font-weight:700;cursor:pointer}
+form>button:disabled{opacity:.65;cursor:wait}
+.sent-message{margin:0 0 18px;color:#71839d;font-size:13px;line-height:1.5}
+.text-button{display:block;margin:14px auto 0;padding:6px;border:0;background:none;color:#176de2;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.number-actions{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:4px 14px;margin:-16px 0 18px}
+.number-actions .text-button{margin:0;text-align:left}
+.message{min-height:22px;margin:16px 0 0;color:#c63737;font-size:13px;line-height:1.5}
+.message.success{color:#07815f}
+.security-note{margin:19px 0 0;padding-top:17px;border-top:1px solid #e5edf7;color:#8191a8;text-align:center;font-size:11px;line-height:1.55}
+@media(max-width:480px){.login-card{padding:28px 22px}h1{font-size:22px}}
